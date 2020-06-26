@@ -10,6 +10,12 @@
  * operations are based on the List interface from Java.
  */
 typedef struct List {
+    
+    /**
+     * Pointer to the concrete instance, its type implements this interface.
+     */
+    void *instance;
+
     // CREATORS
 
     /* Empty because is an interface*/
