@@ -22,4 +22,4 @@ linkedlist.o: include/linkedlist.h source/linkedlist.c
 	$(CC) $(CFLAGS) -c source/linkedlist.c
 
 .PHONY: clean
-clean: ; rm -f *.o linkedlist
+clean: ; -rm -f *.o linkedlist
