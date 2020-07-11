@@ -1,25 +1,23 @@
 #!/usr/bin/make -f
 
-CC=gcc -Os
+include ../MakeVars
 
-BUILD_DEBUG ?= yes #<-- ifndef define
-CDEBUG =-g
-CFLAGS = -Wall -Wextra -Werror -Wformat=2 -pipe \
-    -Wnull-dereference -Wlogical-op -Wduplicated-cond -Wduplicated-branches -Wshadow
-#ifdef
-CFLAGS += -g -DDEBUG
-#endif
+$(BUILD_DIR)/linkedlist.t: $(BUILD_DIR)/linkedlist.t.o $(BUILD_DIR)/linkedlist.o
+	$(CC) $(CFLAGS) $^ -o $@
+	echo $(SOURCE_DIR)/%.t.c $(INCLUDE_DIR)/%.h
 
-SRCS_C = source/*.c
+$(BUILD_DIR)/%.t.o: $(SOURCE_DIR)/%.t.c $(INCLUDE_DIR)/%.h
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+$(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.c $(INCLUDE_DIR)/%.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
-linkedlist.t: linkedlist.o linkedlist.t.o
-	$(CC) $(CFLAGS) linkedlist.t.o linkedlist.o -o $@
 
-linkedlist.t.o: source/linkedlist.t.c include/linkedlist.h
-	$(CC) $(CFLAGS) -c source/linkedlist.t.c
+#linkedlist.t.o: source/linkedlist.t.c include/linkedlist.h
+#	$(CC) $(CFLAGS) -c source/linkedlist.t.c
 
-linkedlist.o: include/linkedlist.h source/linkedlist.c
-	$(CC) $(CFLAGS) -c source/linkedlist.c
+#linkedlist.o: source/linkedlist.c include/linkedlist.h
+#	$(CC) $(CFLAGS) -c source/linkedlist.c
 
 .PHONY: clean
-clean: ; -rm -f *.o linkedlist
+clean: ; rm -f $(BUILD_DIR)/*.o $(BUILD_DIR)/linkedlist.t
