@@ -1,2 +1,2 @@
 # c-data_structures
-This is a project where data structures like trees, lists, queues, etc are implemented in C.
+This project contains generic data structures like trees, lists, queues, etc. All these data structures are implemented in C.
