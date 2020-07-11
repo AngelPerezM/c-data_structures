@@ -1,0 +1,16 @@
+BUILD_DEBUG ?= yes
+
+CC = gcc -Os
+CFLAGS = -Wall -Wextra -Werror -Wformat=2 -pipe \
+	 -Wnull-dereference -Wlogical-op -Wduplicated-cond -Wduplicated-branches -Wshadow
+CDEBUG = -g -DDEBUG
+
+ifeq ($(BUILD_DEBUG), yes)  # -- Debug mode?
+CFLAGS += $(CDEBUG)
+endif
+
+INCLUDE_DIR = include
+SOURCE_DIR = source
+BUILD_DIR = build
+DEFINE =
+LIBDIR = lib
