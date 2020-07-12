@@ -8,6 +8,8 @@ CDEBUG = -g -DDEBUG
 ifeq ($(BUILD_DEBUG), yes)  # -- Debug mode?
 CFLAGS += $(CDEBUG)
 $(info [INFO] All files will be compiled in debug mode.)
+else
+$(info [INFO] All files will be compiled in release mode.)
 endif
 
 INCLUDE_DIR = include
